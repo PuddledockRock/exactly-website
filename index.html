@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puddledock Rock | High-Conformity Infrastructure Aggregates</title>
+    <style>
+        :root {
+            --slate-dark: #1e293b;
+            --charcoal: #0f172a;
+            --industrial-amber: #d97706;
+            --bg-light: #f8fafc;
+            --border-color: #cbd5e1;
+            --text-main: #334155;
+            --text-dark: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            padding-bottom: 60px;
+        }
+
+        /* Industrial Wordmark Logo Styling */
+        header {
+            background-color: var(--charcoal);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--industrial-amber);
+        }
+
+        .logo-wordmark {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            display: inline-block;
+        }
+
+        .logo-sub {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Intro Statement Layout */
+        .intro-banner {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+
+        .intro-banner h2 {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Tab Navigation Layout */
+        .tab-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tab-btn {
+            background: #e2e8f0;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            border-radius: 4px 4px 0 0;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            background: #cbd5e1;
+            color: var(--text-dark);
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: var(--text-dark);
+            border-bottom: 2px solid white;
+            padding-bottom: 13px;
+        }
+
+        /* Tab Content Panel Layout */
+        .tab-content {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 0 4px 4px 4px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        /* Typography & Tables within Content Panels */
+        .tab-content h3 {
+            color: var(--text-dark);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+
+        .tab-content h4 {
+            color: var(--text-dark);
+            font-size: 1.15rem;
+            margin: 25px 0 10px 0;
+        }
+
+        .tab-content p {
+            margin-bottom: 15px;
+        }
+
+        .tab-content ul {
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+
+        .tab-content li {
+            margin-bottom: 8px;
+        }
+
+        blockquote {
+            background: #fffbeb;
+            border-left: 4px solid var(--industrial-amber);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 4px 4px 0;
+            color: #78350f;
+            font-weight: 500;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Commercial Intake Form Styling */
+        .form-container {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .tab-btn { flex: 1 1 auto; text-align: center; border-radius: 4px; }
+            .tab-menu { border-bottom: none; }
+            .tab-content { border-radius: 4px; }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 768px) {
+            .form-group.full-width { grid-column: span 1; }
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            color: var(--text-dark);
+            background-color: white;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--industrial-amber);
+            border-color: transparent;
+        }
+
+        button.submit-btn {
+            background-color: var(--slate-dark);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: background-color 0.2s ease;
+            margin-top: 10px;
+        }
+
+        button.submit-btn:hover {
+            background-color: var(--charcoal);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.85rem;
+            color: #64748b;
+            border-top: 1px solid var(--border-color);
+            background-color: white;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-wordmark">Puddledock Rock</div>
+        <div class="logo-sub">Infrastructure Materials Supply</div>
+    </header>
+
+    <div class="container">
+
+        <div class="intro-banner">
+            <h2>Exploratory Forward Allocation Registry</h2>
+            <p>Puddledock Rock Pty Ltd is developing a strategic, high-volume hard rock asset at Tilbuster, located 11km north of Armidale within the geographic center of the New England Renewable Energy Zone (REZ). We are currently opening preliminary operational dialogue with Tier 1 constructors and civil management networks to schedule pre-approval production capacities.</p>
+        </div>
+
+        <!-- Tab Navigation Menu -->
+        <div class="tab-menu">
+            <button class="tab-btn active" onclick="switchTab(event, 'tech-specs')">Technical Performance</button>
+            <button class="tab-btn" onclick="switchTab(event, 'forward-procurement')">Forward Procurement</button>
+            <button class="tab-btn" onclick="switchTab(event, 'esg-stewardship')">ESG & Neighborhood Protection</button>
+            <button class="tab-btn" onclick="switchTab(event, 'governance-cor')">Governance & CoR</button>
+            <button class="tab-btn" onclick="switchTab(event, 'cultural-heritage')">Indigenous & Cultural Heritage</button>
+        </div>
+
+        <!-- Tab Panels Content Container -->
+        <div class="tab-content">
+
+            <!-- Panel 1: Technical Performance -->
+            <div id="tech-specs" class="panel active">
+                <h3>Technical Performance & Engineering QA</h3>
+                <h4>Geological Profile & Geotechnical Stability</h4>
+                <p>The primary target resource at the Tilbuster Quarry asset consists of an abundant, highly silicified Hornfels metasediment (metamorphic classification: meta-feldspathic litharenite). Generated via contact metamorphism where heat from the proximal Triassic Tilbuster Granodiorite altered the dense Carboniferous Sandon Beds, this geological transformation has resulted in an exceptionally tough, fine-grained grey-to-black groundmass with extreme structural cohesiveness and high load-bearing capacity.</p>
+                <p>Comprehensive geotechnical profiling indicates the rock mass forms a highly stable, low-risk formation. The component clasts and lithic fragments are randomly oriented and tightly interlocked, ensuring the resource is free from localized planes of weakness or directional structural splitting.</p>
+                <ul>
+                    <li><strong>Total Drilled Resource Volume:</strong> 2.76 million tonnes of continuous, unweathered hard rock.</li>
+                    <li><strong>Decomposition & Weathering Profile:</strong> Independently verified as Fresh under AS1726-2017 standards, demonstrating negligible alterability or mineralogical breakdown over multi-decade exposure horizons.</li>
+                </ul>
+
+                <h4>NATA-Accredited Mechanical Properties</h4>
+                <p>Provisional material evaluations have been executed and verified through independent, NATA-accredited testing facilities, confirming elite durability indices that comfortably satisfy high-velocity infrastructure parameters:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Material Property Index</th>
+                            <th>Testing Standard Reference</th>
+                            <th>Certified Laboratory Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Dry Strength</strong></td><td>AS 1141.22</td><td>288 kN</td></tr>
+                        <tr><td><strong>Wet Strength</strong></td><td>AS 1141.22</td><td>240 kN</td></tr>
+                        <tr><td><strong>Wet/Dry Strength Variation</strong></td><td>AS 1141.22</td><td>16% (Zero physical breakdown recorded under soaking)</td></tr>
+                        <tr><td><strong>Sodium Sulphate Soundness</strong></td><td>AS 1141.24</td><td>0.5% Total Weighted Loss</td></tr>
+                        <tr><td><strong>Water Absorption Rate</strong></td><td>AS 1141.6.1</td><td>0.7%</td></tr>
+                        <tr><td><strong>Apparent Particle Density</strong></td><td>AS 1141.6.1</td><td>2.74 t/m³</td></tr>
+                        <tr><td><strong>Particle Density (Dry)</strong></td><td>AS 1141.6.1</td><td>2.68 t/m³</td></tr>
+                        <tr><td><strong>Particle Density (SSD)</strong></td><td>AS 1141.6.1</td><td>2.70 t/m³</td></tr>
+                        <tr><td><strong>Acid Soluble Sulfate (as SO3)</strong></td><td>RMS T219</td><td>0.02%</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>Geometric Conformity & Infrastructure Application</h4>
+                <p>To satisfy strict Tier 1 pavement and concrete design mix requirements, the proposed site layout features a full mobile four-stage processing circuit incorporating primary jaw, secondary cone, and a specialized Vertical Shaft Impact (VSI) tertiary crusher operating with closed-circuit oversize return and triple-deck screening. The VSI circuit optimizes the particle shape of our 10mm and 20mm structural aggregate lines, dictating highly cubical, interlocked geometries that eliminate flaky or elongated shards. This directly optimizes paste efficiency and concrete compressive strength in heavy structural applications.</p>
+
+                <blockquote>
+                    <strong>Asbestos-Free Mineralogical Certification:</strong> Independent petrographic microscopic thin-section analysis certifies that the target extraction mass is entirely free from asbestiform minerals.<br><br>
+                    <em>Alkali-Reactivity Matrix:</em> The resource is verified as innocuous regarding Alkali-Carbonate Reactivity (ACR) and carries a mild risk profile for Alkali-Silica Reactivity (ASR), an engineered variable that Tier 1 concrete technicians can easily mitigate using standard low-alkali cementitious formulations or supplementary cementitious materials (SCMs). Total free silica content is measured at 26.8%.
+                </blockquote>
+            </div>
+
+            <!-- Panel 2: Forward Procurement -->
+            <div id="forward-procurement" class="panel">
+                <h3>Commercial Certainty & Forward Volume Registry</h3>
+                <h4>The Independent Anti-Monopoly Firewall</h4>
+                <p>A major systemic risk to the New England Renewable Energy Zone (REZ) build-out is the commercial monopolization of raw materials. Large corporate material conglomerates routinely acquire local footprints to execute aggressive, non-negotiable pricing regimes once regional demand peaks.</p>
+                <p>Puddledock Rock Pty Ltd operates with an explicit commitment to long-term independent ownership. Because we are an agile, locally controlled entity answering to our community rather than corporate equity markets, we serve as a vital commercial alternative. We possess the structural autonomy to offer transparent, stable pricing models directly to regional constructors, insulating project margins from corporate price inflation.</p>
+
+                <h4>Forward Material Allocation Framework (Pre-Approval Phase)</h4>
+                <p>To assist Tier 1 project estimators and bid directors in shoring up their commercial input variables during head-contract tendering, we have established a provisional Forward Material Allocation Registry. This framework allows contractors to de-risk their procurement lines prior to the final determination of development approvals.</p>
+                <ul>
+                    <li><strong>Non-Binding Letters of Intent (LOIs):</strong> Registering your project’s required volume in our forward production pipeline executes a priority position in our forward volume registry at zero upfront cost, ensuring your project takes priority allocation during site commissioning.</li>
+                    <li><strong>Margin Protection Structuring:</strong> Foundation allocation partners can establish provisional pricing agreements featuring fixed-rate or transparent rise-and-fall indexation models, shielding civil packages from sudden regional demand surges.</li>
+                    <li><strong>Custom Product Calibration:</strong> During our initial commissioning phase, we are prepared to run tailored batch trials to test, adapt, and refine specific material blends to your exact engineering parameters (including TfNSW, AS 2758.1, or specialized municipal specifications) at our cost.</li>
+                    <li><strong>Strategic Stockpile-Ahead Protocols:</strong> Allocation frameworks secure the right to establish dedicated on-site reserve stockpiles ahead of schedule, ensuring that variable high-volume pour phases or heavy pavement schedules are never constrained by gate dispatch capacity.</li>
+                </ul>
+
+                <h4>Direct Principal Engagement</h4>
+                <p>Our streamlined corporate governance structure removes the administrative friction common to multinational suppliers. Tier 1 procurement panels gain direct, frictionless access to the asset owners and principal decision-makers. This facilitates rapid contract customization, immediate logistical adaptions, and same-day commercial resolutions, keeping supply lines moving at the speed of your project footprint.</p>
+            </div>
+
+            <!-- Panel 3: ESG & Stewardship -->
+            <div id="esg-stewardship" class="panel">
+                <h3>ESG, Scope 3 & Neighborhood Stewardship</h3>
+                <h4>Scope 3 Carbon Minimization via Geographic Proximity</h4>
+                <p>Sourcing construction materials from distant quarries introduces extreme, compounding Scope 3 freight emissions into a project's carbon registry. Sited at Tilbuster, just 11km north of Armidale, the quarry asset is situated directly within the geographic center of the New England REZ infrastructure network and transmission corridor. Sourcing structural aggregates locally yields an un-negotiated, structural carbon-reduction metric that directly enhances a contractor's corporate sustainability rating and fulfills government green infrastructure mandates.</p>
+
+                <h4>Prioritizing Historically Disturbed Footprints (Brownfield Asset Optimization)</h4>
+                <p>Under modern environmental auditing matrices, greenfield sites that disrupt intact native vegetation or agricultural land score poorly. The proposed Tilbuster Quarry operation directly addresses this by optimizing a historically disturbed brownfield footprint:</p>
+                <ul>
+                    <li><strong>Legacy Mining Footprint:</strong> The planned extraction zone sits entirely within a historical mining lease (ML1064) featuring a gold-mining legacy dating back to the 1860s. Sourcing from a site modified by industrial activity for over a century completely eliminates the need to clear pristine conservation lands or alienate high-value agricultural soil.</li>
+                    <li><strong>Environmental Legacy Protection:</strong> Our long-term objective is to systematically rehabilitate historical, un-remediated mining workings across the property, transforming legacy hazards into a stable, safe, and ecologically integrated landform.</li>
+                </ul>
+
+                <h4>Advanced Engineering for Low-Impact Neighborhood Protection</h4>
+                <p>We recognize that local trust must be earned through verified operational performance. The quarry design incorporates robust engineering controls specifically selected to isolate operations and ensure the natural tranquility of the Puddledock Road locality remains completely unaffected. We do not expect our neighbors to simply take our word for it; we intend to demonstrate our low-impact metrics daily through transparent operational boundaries.</p>
+                <ul>
+                    <li><strong>Subterranean Operational Design:</strong> The entire extraction and material-crushing circuit is engineered to occur exclusively within a subterranean pit floor dug well below the natural terrain level. The surrounding natural ridge lines act as a heavy, continuous acoustic and visual wall, completely blocking operations from public view and trapping sound waves.</li>
+                    <li><strong>Strict Operational Windows:</strong> To protect local evening amenity, the provisional schedule is strictly restricted to daytime hours (7:00 am to 6:00 pm Monday–Friday; 8:00 am to 1:00 pm Saturdays). The site will remain completely silent on Sundays and public holidays. Planned campaign blasting is confined to a restrictive weekday window of 9:00 am to 3:00 pm.</li>
+                    <li><strong>Closed-Loop Hydrological Security:</strong> The proposed site model extracts zero water from local creeks, watercourses, or regional groundwater tables. A comprehensive system of internal diversion drains directs all operational runoff into dedicated on-site sediment basins, creating a closed-loop recycling system that completely isolates quarry water from downstream environments.</li>
+                    <li><strong>Resource Safeguards:</strong> The proposed layout maintains an unencumbered protective buffer zone setback from the buried municipal water pipeline easement that crosses the property margins from Puddledock Dam.</li>
+                    <li><strong>Air Quality Containment:</strong> To prevent dust migration across neighborhood boundaries, active water carts are continuously deployed across internal tracking zones. All departing highway transport vehicles operate under mandatory covered-load protocols and utilize automated rumble grids at the exit gate.</li>
+                </ul>
+            </div>
+
+            <!-- Panel 4: Governance & CoR -->
+            <div id="governance-cor" class="panel">
+                <h3>Governance, Risk Management & CoR</h3>
+                <h4>Chain of Responsibility (CoR) Transport Integration</h4>
+                <p>Under national heavy vehicle legislation, Tier 1 contractors share severe legal liabilities regarding transport safety breaches. The quarry site architecture eliminates this risk by building advanced compliance tracking directly into our gate logistics:</p>
+                <ul>
+                    <li><strong>Calibrated Loader Scale Verification:</strong> All front-end loaders assigned to transport loading operate with calibrated, onboard digital scale systems. This ensures real-time axle-weight optimization and guarantees that no vehicle can exceed legal payload limits.</li>
+                    <li><strong>Responsible Road Integration:</strong> To interface transport operations with the high-speed 100 km/h traffic flow on Puddledock Road, our planning includes fully funding a channelized physical intersection upgrade at our entry gate. Advanced heavy-vehicle approach signage will be permanently installed 150 meters on both public road approaches to maximize regional traffic safety.</li>
+                    <li><strong>Mandatory Driver Code of Conduct:</strong> Every transport contractor operating from the site must bind themselves to a strict Driver Code of Conduct, enforcing professional, defensive driving standards, covered loads, and zero tolerance for non-compliant engine braking regimes.</li>
+                </ul>
+
+                <h4>System Prequalification & Corporate Risk Insulation</h4>
+                <p>Our risk management framework is built to align with leading corporate pre-qualification platforms (such as Felix, CM3, or specialized Tier 1 internal procurement systems).</p>
+                <ul>
+                    <li><strong>Strict Induction and Competency Frameworks:</strong> A comprehensive site induction regime is planned for all personnel before entering operational zones. All heavy-machinery operators, including sub-contractors, must clear an independent Verification of Competency (VOC) matrix mapped to national advisory codes.</li>
+                    <li><strong>Surrender of Overlapping Conflict and Secure Tenure:</strong> Our legal strategy ensures clean, unencumbered asset security. Puddledock Rock Pty Ltd is systematically managing the transition of legacy holdings, with the commitment that all historical mining lease tenures (ML1064) will be completely surrendered and consolidated under clean, singular modern development consents prior to the activation of quarry production. This completely insulates Tier 1 joint-venture partners from historical legal claims or overlapping land-use disputes.</li>
+                    <li><strong>Statutory Mine Governance System:</strong> Operational modeling provides for the formal implementation of a full Work Health and Safety Management System matching the mandates of the Work Health and Safety (Mines and Petroleum Sites) Act. A fully qualified, statutory Quarry Manager will be appointed to control daily on-site safety compliance, risk logging, and hazard mitigation procedures.</li>
+                </ul>
+            </div>
+
+            <!-- Panel 5: Cultural Heritage -->
+            <div id="cultural-heritage" class="panel">
+                <h3>Indigenous Engagement & Cultural Heritage</h3>
+                <h4>Inclusive Consultation & Cultural Respect</h4>
+                <p>Puddledock Rock Pty Ltd operates with an absolute commitment to meaningful, ongoing collaboration with the traditional custodians of the land. We respect and honor Aboriginal and Torres Strait Islander Elders past, present, and future, acknowledging the deep stories, continuous traditions, and living cultures that form a part of this landscape.</p>
+                <p>To ensure our pre-operational planning strictly respects regional indigenous heritage, we have executed comprehensive, proactive field surveys across our entire development footprint, working in direct coordination with local Aboriginal community representatives.</p>
+
+                <h4>Proactive Archaeological Clearance</h4>
+                <p>Our commitment to cultural heritage preservation is backed by empirical archaeological investigation. Rather than treating heritage as an afterthought, comprehensive field walking and surface visibility surveys were completed by specialized independent firms (Whincop Archaeology) with the active on-site participation of local Registered Aboriginal Parties (RAPs).</p>
+                <ul>
+                    <li><strong>Identified Artifact Management:</strong> During field evaluations, three (3) localized Aboriginal stone relics were identified within the investigative boundary. In accordance with the explicit assessment of the local Aboriginal community representatives participating in the survey, these items have been classified as possessing low localized archaeological significance.</li>
+                    <li><strong>Aboriginal Heritage Impact Permits (AHIP):</strong> To guarantee full legal and ethical compliance, we are systematically progressing through the integrated development approvals framework to secure a formal Aboriginal Heritage Impact Permit (AHIP) under Section 90 of the National Parks & Wildlife Act 1974 prior to any physical ground disturbance. This ensures the controlled, respectful removal and preservation of these relics in full accordance with cultural protocols.</li>
+                </ul>
+
+                <h4>Strict Unexpected Finds Protocols</h4>
+                <p>To completely de-risk field operations and insulate the project from sudden regulatory halts, the site will operate under a rigorous, mandatory Unexpected Finds Protocol developed in accordance with Heritage NSW guidelines:</p>
+                <ul>
+                    <li><strong>Immediate Cessation Safeguards:</strong> In the unlikely event that any previously unrecorded subterranean Aboriginal object, tool, stone arrangement, or potential scar tree is encountered during bulk excavation or road building, all automated and physical works within a protective radius will instantly cease.</li>
+                    <li><strong>Professional Re-Evaluation Loops:</strong> The affected zone will be securely cordoned off, and the quarry manager will immediately re-engage a qualified archaeologist alongside local Aboriginal stakeholder groups and Heritage NSW representatives to inspect, log, and determine appropriate conservation management or salvage treatments before any works are cleared to resume.</li>
+                    <li><strong>Fulfilling Social Procurement Targets:</strong> Partnering with Puddledock Rock allows Tier 1 contractors to confidently satisfy complex social procurement KPIs mandated within major state infrastructure contracts, proving that their aggregate supply chain directly reinforces verified, respectful cultural heritage governance.</li>
+                </ul>
+            </div>
+
+            <!-- Shared Forward Allocation Form -->
+            <div class="form-container">
+                <h3>Commercial Allocation & Partnership Intake</h3>
+                <p style="margin-bottom: 20px; font-size: 0.95rem;">Submit an exploratory, non-binding expression of interest to register your project's volume parameters or request a direct principal review.</p>
+                
+                <!-- Replace 'https://formspree.io/f/xdaqkbro' with your Formspree/Formspark string later -->
+                <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="company">Company / Entity Name</label>
+                            <input type="text" id="company" name="Company Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">Contact Person</label>
+                            <input type="text" id="contact" name="Contact Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Corporate Email</label>
+                            <input type="email" id="email" name="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="Phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="project-type">Project Profile / Market Sector</label>
+                            <select id="project-type" name="Project Sector" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="REZ Infrastructure">New England REZ Infrastructure</option>
+                                <option value="Civil Pavements">Civil Pavements / Roadworks</option>
+                                <option value="Concrete Supplier">Ready-Mix Concrete / Batching</option>
+                                <option value="Strategic Investor">Strategic Investor / Joint-Venture Partnership</option>
+                                <option value="Other Commercial">Other Commercial Development</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tonnage">Provisional Tonnage Requirement (Est.)</label>
+                            <input type="text" id="tonnage" name="Estimated Tonnage" placeholder="e.g., 50,000 tonnes">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="message">Material Specifications / Partnership Inquiry Details</label>
+                            <textarea id="message" name="Inquiry Details" rows="4" placeholder="Outline your material grade needs (e.g., DGB20) or strategic venture parameters..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Registry Request</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Puddledock Rock Pty Ltd. All Rights Reserved.</p>
+        <p style="margin-top: 5px; font-size: 0.75rem; color: #94a3b8;">Corporate Communications | Direct Inquiries: enquiries@puddledockrock.com.au</p>
+    </footer>
+
+    <!-- Tab Logic Script -->
+    <script>
+        function switchTab(evt, tabId) {
+            // Hide all tab panels
+            const panels = document.getElementsByClassName("panel");
+            for (let i = 0; i < panels.length; i++) {
+                panels[i].classList.remove("active");
+            }
+
+            // Remove active status from all tab buttons
+            const tabButtons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Display current panel and apply active class to clicked button
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
