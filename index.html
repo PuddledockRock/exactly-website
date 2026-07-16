@@ -38,6 +38,26 @@
             border-bottom: 4px solid var(--industrial-amber);
         }
 
+        .logo-lockup {
+            display: inline-flex;
+            align-items: center;
+            gap: 22px;
+            text-align: left;
+        }
+
+        .logo-strata {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+
+        .logo-strata span {
+            display: block;
+            height: 11px;
+            border-radius: 2px;
+        }
+
         .logo-wordmark {
             font-size: 2.2rem;
             font-weight: 900;
@@ -279,8 +299,19 @@
 <body>
 
     <header>
-        <div class="logo-wordmark">Puddledock Rock</div>
-        <div class="logo-sub">Infrastructure Materials Supply</div>
+        <div class="logo-lockup">
+            <div class="logo-strata" aria-hidden="true">
+                <span style="width:40px;background:#c5d0d8;"></span>
+                <span style="width:30px;background:#98a7b3;"></span>
+                <span style="width:46px;background:#2f6ea3;"></span>
+                <span style="width:26px;background:#5c6b7a;"></span>
+                <span style="width:36px;background:#c5d0d8;"></span>
+            </div>
+            <div>
+                <div class="logo-wordmark">Puddledock Rock</div>
+                <div class="logo-sub">Infrastructure Materials Supply</div>
+            </div>
+        </div>
     </header>
 
     <div class="container">
@@ -436,8 +467,10 @@
                 <h3>Commercial Allocation & Partnership Intake</h3>
                 <p style="margin-bottom: 20px; font-size: 0.95rem;">Submit an exploratory, non-binding expression of interest to register your project's volume parameters or request a direct principal review.</p>
                 
-                <!-- Replace 'https://formspree.io/f/xdaqkbro' with your Formspree/Formspark string later -->
-                <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+                <form action="https://formsubmit.co/enquiries@puddledockrock.com.au" method="POST">
+                    <input type="hidden" name="_subject" value="Website enquiry — Puddledock Rock">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="company">Company / Entity Name</label>
